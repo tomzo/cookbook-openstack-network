@@ -70,3 +70,8 @@ enable_security_group = <%= node['openstack']['network']['ml2']['enable_security
 # Use ipset to speed-up the iptables security groups. Enabling ipset support
 # requires that ipset is installed on L2 agent node.
 enable_ipset = <%= node['openstack']['network']['ml2']['enable_ipset'] %>
+
+[ovs]
+local_ip = <%= node['openstack']['network']['openvswitch']['local_ip'] %>
+tunnel_type = <%= node['openstack']['network']['openvswitch']['tunnel_type'] %>
+enable_tunneling = <%= node['openstack']['network']['openvswitch']['enable_tunneling'] %>
