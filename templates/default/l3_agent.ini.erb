@@ -46,7 +46,8 @@ handle_internal_only_routers = <%= node["openstack"]["network"]["l3"]["handle_in
 # Name of bridge used for external network traffic. This should be set to
 # empty value for the linux bridge. when this parameter is set, each L3 agent
 # can be associated with no more than one external network.
-external_network_bridge = <%= node["openstack"]["network"]["l3"]["external_network_bridge"] %>
+# This must be empty to support more than one external network
+external_network_bridge = 
 
 # TCP Port used by Neutron metadata server
 metadata_port = <%= node["openstack"]["network"]["l3"]["metadata_port"] %>
