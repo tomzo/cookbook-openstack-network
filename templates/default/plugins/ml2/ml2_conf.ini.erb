@@ -75,3 +75,31 @@ enable_ipset = <%= node['openstack']['network']['ml2']['enable_ipset'] %>
 local_ip = <%= node['openstack']['network']['openvswitch']['local_ip'] %>
 tunnel_type = <%= node['openstack']['network']['openvswitch']['tunnel_type'] %>
 enable_tunneling = <%= node['openstack']['network']['openvswitch']['enable_tunneling'] %>
+
+# (ListOpt) Comma-separated list of <physical_network>:<bridge> tuples
+# mapping physical network names to the agent's node-specific OVS
+# bridge names to be used for flat and VLAN networks. The length of
+# bridge names should be no more than 11. Each bridge must
+# exist, and should have a physical network interface configured as a
+# port. All physical networks listed in network_vlan_ranges on the
+# server should have mappings to appropriate bridges on each agent.
+#
+# Default: bridge_mappings =
+# Example: bridge_mappings = physnet1:br-eth1
+<% if node["openstack"]["network"]["openvswitch"]["bridge_mappings"] -%>
+bridge_mappings = <%= node["openstack"]["network"]["openvswitch"]["bridge_mappings"] %>
+<% end -%>
+
+# (ListOpt) Comma-separated list of
+# <physical_network>[:<vlan_min>:<vlan_max>] tuples enumerating ranges
+# of VLAN IDs on named physical networks that are available for
+# allocation. All physical networks listed are available for flat and
+# VLAN provider network creation. Specified ranges of VLAN IDs are
+# available for tenant network allocation if tenant_network_type is
+# 'vlan'. If empty, only gre, vxlan and local networks may be created.
+#
+# Default: network_vlan_ranges =
+# Example: network_vlan_ranges = physnet1:1000:2999
+<% if node["openstack"]["network"]["openvswitch"]["network_vlan_ranges"] -%>
+network_vlan_ranges = <%= node["openstack"]["network"]["openvswitch"]["network_vlan_ranges"] %>
+<% end -%>
