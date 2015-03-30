@@ -52,6 +52,7 @@ end
 
 service 'neutron-server' do
   service_name platform_options['neutron_server_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action [:enable, :start]
 end

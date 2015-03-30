@@ -53,6 +53,7 @@ end
 
 platform_options['vpn_device_driver_services'].each do |svc|
   service 'vpn-device-driver-service' do
+    provider Chef::Provider::Service::Upstart
     service_name svc
     supports status: true, restart: true
     action :enable
@@ -61,6 +62,7 @@ end
 
 service 'neutron-vpn-agent' do
   service_name platform_options['neutron_vpn_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action :enable
   subscribes :restart, 'template[/etc/neutron/neutron.conf]'

@@ -51,6 +51,7 @@ end
 
 service 'neutron-plugin-linuxbridge-agent' do
   service_name platform_options['neutron_linuxbridge_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action :enable
   subscribes :restart, 'template[/etc/neutron/neutron.conf]'

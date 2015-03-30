@@ -35,6 +35,7 @@ end
 
 service 'neutron-dhcp-agent' do
   service_name platform_options['neutron_dhcp_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
 
   action :enable
