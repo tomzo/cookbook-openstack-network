@@ -44,6 +44,7 @@ end
 
 service 'neutron-lb-agent' do
   service_name platform_options['neutron_lb_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action :enable
   subscribes :restart, 'template[/etc/neutron/neutron.conf]', :delayed

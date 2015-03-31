@@ -78,6 +78,7 @@ end
 
 service 'neutron-openvswitch-switch' do
   service_name platform_options['neutron_openvswitch_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action [:enable, :start]
 end
@@ -85,6 +86,7 @@ end
 if node.run_list.expand(node.chef_environment).recipes.include?('openstack-network::server')
   service 'neutron-server' do
     service_name platform_options['neutron_server_service']
+    provider Chef::Provider::Service::Upstart
     supports status: true, restart: true
     action :nothing
   end
@@ -119,6 +121,7 @@ end
 
 service 'neutron-plugin-openvswitch-agent' do
   service_name platform_options['neutron_openvswitch_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   action :enable
   subscribes :restart, 'template[/etc/neutron/neutron.conf]'

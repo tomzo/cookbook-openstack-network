@@ -59,6 +59,7 @@ end
 
 service 'neutron-l3-agent' do
   service_name platform_options['neutron_l3_agent_service']
+  provider Chef::Provider::Service::Upstart
   supports status: true, restart: true
   # if the vpn agent is enabled, we should stop and disable the l3 agent
   if node['openstack']['network']['enable_vpn']
