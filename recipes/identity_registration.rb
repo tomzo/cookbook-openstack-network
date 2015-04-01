@@ -33,9 +33,9 @@ identity_admin_endpoint = admin_endpoint 'identity-admin'
 bootstrap_token = get_secret 'openstack_identity_bootstrap_token'
 auth_uri = ::URI.decode identity_admin_endpoint.to_s
 
-admin_api_endpoint = admin_endpoint 'network-admin'
+admin_api_endpoint = admin_endpoint 'network-api'
 public_api_endpoint = public_endpoint 'network-api'
-internal_api_endpoint = internal_endpoint 'network-internal'
+internal_api_endpoint = internal_endpoint 'network-api'
 
 service_pass = get_password 'service', 'openstack-network'
 service_tenant_name = node['openstack']['network']['service_tenant_name']
